@@ -1,0 +1,43 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller ="LC_highlightsCustomController" >
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="objeto" type="String" />
+    <aura:attribute name="title" type="String" />
+    <aura:attribute name="icono" type="String" />
+    <aura:attribute name="show" type="Boolean" />
+    <aura:attribute name="items" type="List" />
+    
+    <aura:attribute name="marcaIcon" type ="String" />
+    <aura:attribute name="showMarca" type="Boolean" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	    <aura:if isTrue="{!v.show}">
+    		<lightning:card  title="{!v.title}" iconName="{!v.icono}" >
+            <div class="containerLayout">
+                <lightning:layout multipleRows = "true">
+                <aura:if isTrue="{!v.showMarca}">
+                    <lightning:layoutItem padding="around-small" size="2">
+                        <div class="header-column">
+                            	<p class="field-title" title="Marca"><b>Marca</b></p>
+                            	<div class="{!v.marcaIcon}" style="height: 50px;width: 95px;">
+                            	</div>
+                     	</div>
+                        
+                    </lightning:layoutItem>
+                </aura:if>
+            	 	<aura:iteration items="{!v.items}" var="item">
+                    	<lightning:layoutItem padding="around-small" size="2">
+                            <div class="header-column">
+                            	<p class="field-title" title="{!item.itemLabel}"><b>{!item.itemLabel}</b></p>
+                                <p>{!item.itemValue}</p>
+                            </div>
+                        </lightning:layoutItem>
+                    </aura:iteration>
+                    
+                </lightning:layout>
+    		</div>
+        </lightning:card>
+       	<aura:set attribute="else">
+        	<h2><strong>No se puede mostrar</strong></h2>
+      	</aura:set>
+        </aura:if>
+</aura:component>

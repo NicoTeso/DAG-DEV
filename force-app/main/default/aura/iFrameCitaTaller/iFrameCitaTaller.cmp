@@ -1,0 +1,8 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="setMeOnInit" type="String" default="default value" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <iframe class="iframe" src="{!v.setMeOnInit}"
+            sandbox="allow-same-origin allow-scripts allow-forms"></iframe>
+
+</aura:component>

@@ -1,0 +1,83 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="LC_VehicleGuaranteeController">
+	
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="showDataGarantia" type="Boolean" />
+    <aura:attribute name="showDataExtGarantia" type="Boolean" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <lightning:card  title="Garantía" iconName="standard:reward">
+        <aura:if isTrue="{!v.showDataGarantia}">
+        	<lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Vehiculo__c">
+                <div class="containerLayout">
+                    <lightning:layout multipleRows = "true">
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="header-column">
+                                <p class="field-title" title="Inicio garantía"><b>Inicio garantía</b></p>
+                                <lightning:outputField fieldName="Fecha_inicio_garantia__c" variant="label-hidden" />
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="header-column">
+                                <p class="field-title" title="fin garantía"><b>Fin garantía</b></p>
+                                <lightning:outputField fieldName="Fecha_fin_garantia__c" variant="label-hidden" />
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="header-column">
+                                <p class="field-title" title="Inicio garantía"><b>Inicio garantía VO</b></p>
+                                <lightning:outputField fieldName="Fecha_inicio_garantia_VO__c" variant="label-hidden" />
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="header-column">
+                                <p class="field-title" title="fin garantía"><b>Fin garantía VO</b></p>
+                                <lightning:outputField fieldName="Fecha_fin_garantia_VO__c" variant="label-hidden" />
+                            </div>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </div>
+        	</lightning:recordViewForm> 
+        <aura:set attribute="else">
+      		<h2><strong>Sin datos de Garantía.</strong></h2>
+    	</aura:set>
+  		</aura:if> 
+    </lightning:card>
+    <lightning:card  title="Extensión de Garantía" iconName="standard:reward">
+        <aura:if isTrue="{!v.showDataGarantia}">
+            <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Vehiculo__c">
+                <div class="containerLayout">
+                    <lightning:layout multipleRows = "true">
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="header-column">
+                                <p class="field-title" title="Límite Kms"><b>Límite Kms</b></p>
+                                <lightning:outputField fieldName="Kms_contrato_prestacion__c" variant="label-hidden" />
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="header-column">
+                                <p class="field-title" title="Límite Kms"><b>PR Number</b></p>
+                                <lightning:outputField fieldName="PR_Number__c" variant="label-hidden" />
+                            </div>
+                    </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="header-column">
+                                <p class="field-title" title="Inicio garantía extensión"><b>Inicio garantía extensión</b></p>
+                                <lightning:outputField fieldName="Fecha_contrato_inicio_e_garantia__c" variant="label-hidden" />
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="header-column">
+                                <p class="field-title" title="Fin garantía extensión"><b>Fin garantía extensión</b></p>
+                                <lightning:outputField fieldName="Fecha_contrato_fin_e_garantia__c" variant="label-hidden" />
+                            </div>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </div>
+            </lightning:recordViewForm>
+  		 <aura:set attribute="else">
+      		<h2><strong>Sin datos de extensión de garantía.</strong></h2>
+    	</aura:set>
+        </aura:if>
+    </lightning:card>
+</aura:component>

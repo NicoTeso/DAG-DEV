@@ -1,0 +1,29 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="LC_vehicleCampaignsController">
+	<aura:attribute name="recordId" type="String" />
+    <aura:attribute name="showData" type="Boolean"  default="false"/>
+    <aura:attribute name="items" type="List" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:card  title="Campañas" iconName="standard:campaign">
+        <aura:if isTrue="{!v.showData}">
+            <div>
+            	<lightning:layout multipleRows = "true">
+            		<aura:iteration items="{!v.items}" var="item">
+            	    	<lightning:layoutItem padding="around-small" size="3">
+                        	<p>{!item.Codigo__c}</p>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="3">
+                        	<p>{!item.Tipo__c}</p>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                        	<p>{!item.Descripcion__c}</p>
+                        </lightning:layoutItem>
+                    </aura:iteration>
+                </lightning:layout>
+            </div>
+        <aura:set attribute="else">
+      		<h2><strong>No hay campañas.</strong></h2>
+    	</aura:set>
+  		</aura:if> 
+    </lightning:card>
+</aura:component>
